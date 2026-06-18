@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gerador de assinaturas de e-mail Comuta</title>
+    <meta
+      name="description"
+      content="Gerador de assinatura de e-mail para Comuta Reformas e Instituto Comuta."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700&family=Funnel+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <script src="./assets/js/script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Comuta</p>
+          <h1>Gerador de assinaturas de e-mail</h1>
+          <p class="intro">
+            Crie sua assinatura para o Gmail escolhendo entre Comuta Reformas
+            e Instituto Comuta. Depois copie pelo botão e cole direto nas
+            configurações de assinatura do seu e-mail.
+          </p>
+        </div>
+        <div class="brand-duo" aria-label="Marcas Comuta">
+          <div class="brand-card brand-card--reformas">
+            <img
+              src="https://static.wixstatic.com/media/9459e7_ad527706cbaa4ec988289924be9a001a~mv2.png"
+              alt="Comuta Reformas"
+            >
+          </div>
+          <div class="brand-card brand-card--instituto">
+            <img
+              src="https://static.wixstatic.com/shapes/e39337_d7879691dee34e5bb7150a23c949804b.svg"
+              alt="Instituto Comuta"
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="instructions" aria-labelledby="steps-title">
+        <div class="section-heading">
+          <p class="eyebrow">Passo a passo</p>
+          <h2 id="steps-title">Como colocar no Gmail</h2>
+        </div>
+        <ol class="steps">
+          <li><span>Preencha seus dados no gerador abaixo.</span></li>
+          <li><span>Clique em <strong>Copiar assinatura</strong>.</span></li>
+          <li><span>Abra o Gmail e clique na engrenagem de configurações.</span></li>
+          <li><span>Clique em <strong>Ver todas as configurações</strong>.</span></li>
+          <li><span>Na seção <strong>Assinatura</strong>, crie uma assinatura, dê um nome para ela e cole a assinatura copiada.</span></li>
+          <li><span>Em <strong>Padrões de assinatura</strong>, selecione esse nome em <strong>Para uso em novos e-mails</strong>. Essa opção é obrigatória.</span></li>
+          <li><span>Em <strong>Para uso em respostas/encaminhamentos</strong>, selecione a mesma assinatura se quiser. Essa opção é opcional.</span></li>
+          <li><span>Role até o fim da página e clique em <strong>Salvar alterações</strong>.</span></li>
+        </ol>
+      </section>
+
+      <section class="examples" aria-labelledby="examples-title">
+        <div class="section-heading">
+          <p class="eyebrow">Modelos</p>
+          <h2 id="examples-title">Escolha o padrão da assinatura</h2>
+        </div>
+        <div class="example-grid">
+          <article class="example-panel">
+            <div class="example-panel__top">
+              <h3>Comuta Reformas</h3>
+              <button class="ghost-button" type="button" data-load-brand="reformas">
+                Usar modelo
+              </button>
+            </div>
+            <div class="signature-box" id="sampleReformas"></div>
+          </article>
+          <article class="example-panel">
+            <div class="example-panel__top">
+              <h3>Instituto Comuta</h3>
+              <button class="ghost-button" type="button" data-load-brand="instituto">
+                Usar modelo
+              </button>
+            </div>
+            <div class="signature-box" id="sampleInstituto"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="generator" aria-labelledby="generator-title">
+        <div class="section-heading">
+          <p class="eyebrow">Gerador</p>
+          <h2 id="generator-title">Preencha e copie</h2>
+        </div>
+
+        <div class="generator-layout">
+          <form class="signature-form" id="signatureForm">
+            <fieldset>
+              <legend>Marca</legend>
+              <div class="segmented-control" aria-label="Escolha a marca">
+                <label>
+                  <input type="radio" name="brand" value="reformas" checked>
+                  <span>Comuta Reformas</span>
+                </label>
+                <label>
+                  <input type="radio" name="brand" value="instituto">
+                  <span>Instituto Comuta</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="field-grid">
+              <label>
+                <span>Nome completo</span>
+                <input id="fullName" name="fullName" type="text" placeholder="Ex.: Nome Sobrenome" required>
+              </label>
+              <label>
+                <span>Cargo</span>
+                <input id="role" name="role" type="text" placeholder="Ex.: Coord. de projetos" required>
+              </label>
+              <label>
+                <span>Departamento</span>
+                <input id="department" name="department" type="text" placeholder="Ex.: Operações">
+              </label>
+              <label>
+                <span>E-mail</span>
+                <input id="email" name="email" type="email" placeholder="seunome@comuta.com.br" required>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <label class="check-field">
+                <input id="includePhone" name="includePhone" type="checkbox" checked>
+                <span>Incluir telefone</span>
+              </label>
+            </div>
+
+            <div class="field-grid">
+              <label id="phoneField">
+                <span>Telefone</span>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="(11) 99999-9999"
+                >
+              </label>
+              <label>
+                <span>Site</span>
+                <input id="website" name="website" type="text">
+              </label>
+              <label class="wide">
+                <span>Saudação</span>
+                <input id="greeting" name="greeting" type="text" value="Atenciosamente,">
+              </label>
+            </div>
+            <p class="fixed-note" id="fixedAddressNote"></p>
+          </form>
+
+          <aside class="preview-panel" aria-label="Prévia da assinatura">
+            <div class="preview-panel__top">
+              <h3>Prévia</h3>
+              <button class="copy-button" id="copySignature" type="button">
+                Copiar assinatura
+              </button>
+            </div>
+            <div class="signature-box signature-box--live" id="signaturePreview"></div>
+            <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="help" aria-labelledby="help-title">
+        <div class="section-heading">
+          <p class="eyebrow">Ajuda</p>
+          <h2 id="help-title">Ficou com alguma dúvida?</h2>
+        </div>
+        <div class="help-layout">
+          <div class="video-placeholder">
+            <video class="tutorial-video" controls preload="metadata">
+              <source src="./assets/video_explicativo.mp4" type="video/mp4">
+              Seu navegador não conseguiu carregar o vídeo.
+            </video>
+          </div>
+          <div class="contact-panel">
+            <p>
+              Assista ao vídeo ou entre em contato para ajustar sua assinatura.
+            </p>
+            <div class="contact-actions">
+              <a class="contact-button" id="contactEmail" href="mailto:manuela@institutocomuta.org.br">Entre em contato</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
