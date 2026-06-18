@@ -246,6 +246,14 @@ function getPlainText(data) {
   return lines.filter(Boolean).join("\n");
 }
 
+function addEmailSpacing(html) {
+  return `
+    <div style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif; line-height: 1.4;"><br></div>
+    <div style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif; line-height: 1.4;"><br></div>
+    ${html}
+  `.trim();
+}
+
 function renderSignature() {
   const data = getFormData();
   preview.innerHTML = buildSignature(data);
@@ -297,8 +305,8 @@ async function copySignature() {
   }
 
   const data = getFormData();
-  const html = buildSignature(data);
-  const plainText = getPlainText(data);
+  const html = addEmailSpacing(buildSignature(data));
+  const plainText = `\n\n${getPlainText(data)}`;
 
   try {
     if (navigator.clipboard && window.ClipboardItem) {
