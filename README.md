@@ -235,7 +235,7 @@ Dessa forma, futuras alterações podem ser realizadas em um único local, sem a
 ## 🌐 Publicação no GitHub Pages
 
 <p align="center">
-  <a href="COLOQUE-AQUI-O-LINK-DO-GITHUB-PAGES" target="_blank">
+  <a href="https://manuelalramos.github.io/GERADOR-DE-ASSINATURA-DE-EMAIL-COMUTA/" target="_blank">
     <img src="https://img.shields.io/badge/Acessar%20Gerador-f97316?style=for-the-badge&logo=google-chrome&logoColor=white"/>
   </a>
 </p>
