@@ -109,14 +109,14 @@ function contactRow({ icon, alt, href, text, accent }) {
   const safeText = escapeHtml(text);
 
   return `
-    <tr style="vertical-align: middle; height: 26px;">
-      <td width="25" style="vertical-align: middle;">
-        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif; width: 25px;">
+    <tr style="vertical-align: middle; height: 22px;">
+      <td width="22" style="vertical-align: middle;">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Funnel Display, Trebuchet MS, Arial, Helvetica, sans-serif; letter-spacing: 0; width: 22px;">
           <tbody>
             <tr>
               <td style="vertical-align: bottom;">
                 <span style="display: inline-block; background-color: ${accent};">
-                  <img alt="${escapeAttribute(alt)}" width="17" src="${escapeAttribute(icon)}" style="display: block; width: 17px; height: 17px; border: 0; background-image: linear-gradient(${accent}, ${accent});">
+                  <img alt="${escapeAttribute(alt)}" width="14" src="${escapeAttribute(icon)}" style="display: block; width: 14px; height: 14px; border: 0; background-image: linear-gradient(${accent}, ${accent});">
                 </span>
               </td>
             </tr>
@@ -124,7 +124,7 @@ function contactRow({ icon, alt, href, text, accent }) {
         </table>
       </td>
       <td style="padding: 0px; color: #1f1f1f;">
-        <a href="${safeHref}" style="text-decoration: none; color: #1f1f1f; font-size: 13px; line-height: 18px;">
+        <a href="${safeHref}" style="text-decoration: none; color: #1f1f1f; font-size: 12px; line-height: 16px; letter-spacing: 0;">
           <span>${safeText}</span>
         </a>
       </td>
@@ -175,23 +175,23 @@ function buildSignature(data) {
   ].join("");
 
   return `
-    <table cellpadding="0" cellspacing="0" border="0" style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif; color: #1f1f1f; vertical-align: -webkit-baseline-middle;">
+    <table cellpadding="0" cellspacing="0" border="0" style="font-family: Funnel Display, Trebuchet MS, Arial, Helvetica, sans-serif; letter-spacing: 0; color: #1f1f1f; vertical-align: -webkit-baseline-middle;">
       <tbody>
         <tr>
-          <td style="padding: 0 18px 0 0; vertical-align: middle;">
-            <img src="${escapeAttribute(logo)}" alt="${escapeAttribute(brand.name)}" width="116" style="display: block; width: 116px; max-width: 116px; height: auto; border: 0;">
+          <td style="padding: 0 14px 0 0; vertical-align: middle;">
+            <img src="${escapeAttribute(logo)}" alt="${escapeAttribute(brand.name)}" width="96" style="display: block; width: 96px; max-width: 96px; height: auto; border: 0;">
           </td>
-          <td style="border-left: 2px solid ${accent}; padding-left: 18px; vertical-align: middle;">
-            <span style="display: block; margin: 0; color: #6b6b6b; font-size: 12px; line-height: 18px;">${escapeHtml(data.greeting)}</span>
-            <span style="display: block; margin: 0; color: #1f1f1f; font-size: 18px; font-weight: 700; line-height: 24px;">${escapeHtml(data.fullName)}</span>
-            <span style="display: block; margin: 0; color: #1f1f1f; font-size: 13px; line-height: 19px;">${escapeHtml(data.role)}</span>
-            <span style="display: block; margin: 0; color: #1f1f1f; font-size: 13px; font-weight: 600; line-height: 19px;">${departmentText}</span>
-            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif;">
+          <td style="border-left: 2px solid ${accent}; padding-left: 14px; vertical-align: middle;">
+            <span style="display: block; margin: 0; color: #6b6b6b; font-size: 11px; line-height: 15px; letter-spacing: 0;">${escapeHtml(data.greeting)}</span>
+            <span style="display: block; margin: 0; color: #1f1f1f; font-size: 16px; font-weight: 700; line-height: 20px; letter-spacing: 0;">${escapeHtml(data.fullName)}</span>
+            <span style="display: block; margin: 0; color: #1f1f1f; font-size: 12px; line-height: 16px; letter-spacing: 0;">${escapeHtml(data.role)}</span>
+            <span style="display: block; margin: 0; color: #1f1f1f; font-size: 12px; font-weight: 600; line-height: 16px; letter-spacing: 0;">${departmentText}</span>
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Funnel Display, Trebuchet MS, Arial, Helvetica, sans-serif; letter-spacing: 0;">
               <tbody>
-                <tr><td height="10" style="height: 10px; line-height: 10px;"></td></tr>
+                <tr><td height="8" style="height: 8px; line-height: 8px;"></td></tr>
               </tbody>
             </table>
-            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif; line-height: 1;">
+            <table cellpadding="0" cellspacing="0" border="0" style="font-family: Funnel Display, Trebuchet MS, Arial, Helvetica, sans-serif; letter-spacing: 0; line-height: 1;">
               <tbody>${rows}</tbody>
             </table>
           </td>
@@ -351,8 +351,13 @@ function setupContacts() {
   const emailLink = document.querySelector("#contactEmail");
   const whatsappLink = document.querySelector("#contactWhatsapp");
 
-  emailLink.href = `mailto:${CONFIG.contacts.email}`;
-  whatsappLink.href = `https://wa.me/${CONFIG.contacts.whatsapp}`;
+  if (emailLink) {
+    emailLink.href = `mailto:${CONFIG.contacts.email}`;
+  }
+
+  if (whatsappLink) {
+    whatsappLink.href = `https://wa.me/${CONFIG.contacts.whatsapp}`;
+  }
 }
 
 form.addEventListener("input", () => {
