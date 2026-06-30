@@ -100,12 +100,12 @@ h3 {
 
 h1 {
   max-width: 780px;
-  font-size: clamp(2.7rem, 6vw, 5rem);
+  font-size: 4.6rem;
   line-height: 0.92;
 }
 
 h2 {
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-size: 2.4rem;
   line-height: 1.05;
 }
 
@@ -232,7 +232,7 @@ h3 {
 }
 
 .steps--compact {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .steps--compact li {
@@ -242,7 +242,7 @@ h3 {
 
 .steps--compact li > span {
   max-width: none;
-  font-size: 0.96rem;
+  font-size: 0.98rem;
 }
 
 .example-grid,
@@ -348,6 +348,7 @@ h3 {
   min-height: 178px;
   overflow: auto;
   padding: 22px;
+  max-width: 100%;
   background:
     linear-gradient(90deg, rgba(255, 97, 3, 0.06), rgba(12, 153, 252, 0.06)),
     #ffffff;
@@ -610,11 +611,46 @@ input:focus {
   gap: 10px;
 }
 
+@media (max-width: 1180px) {
+  .site-header__inner,
+  main > section {
+    width: min(100%, 980px);
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 2.15rem;
+  }
+
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    gap: 34px;
+  }
+
+  .brand-card {
+    min-height: 160px;
+  }
+
+  .brand-card img {
+    width: min(124px, 100%);
+  }
+}
+
 @media (max-width: 920px) {
-  .steps,
   .example-grid,
   .generator-layout,
   .help-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps--compact {
     grid-template-columns: 1fr;
   }
 
@@ -624,6 +660,45 @@ input:focus {
 
   .site-header__inner {
     grid-template-columns: 1fr;
+  }
+
+  .site-header {
+    padding-top: 46px;
+    padding-bottom: 44px;
+  }
+
+  .brand-duo {
+    max-width: 420px;
+  }
+
+  .preview-panel {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 760px) {
+  h1 {
+    font-size: 3.15rem;
+  }
+
+  h2 {
+    font-size: 1.85rem;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .steps li {
+    min-height: auto;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wide {
+    grid-column: auto;
   }
 }
 
@@ -636,6 +711,7 @@ input:focus {
   .brand-duo {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+    max-width: none;
   }
 
   .brand-card {
@@ -652,9 +728,7 @@ input:focus {
     gap: 4px;
   }
 
-  .field-grid,
-  .segmented-control,
-  .steps {
+  .segmented-control {
     grid-template-columns: 1fr;
   }
 
@@ -675,5 +749,82 @@ input:focus {
 
   .signature-box {
     padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+
+  .site-header,
+  main > section {
+    padding: 26px 14px;
+  }
+
+  h1 {
+    font-size: 2.45rem;
+    line-height: 0.98;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    line-height: 1.12;
+  }
+
+  .intro {
+    font-size: 1rem;
+  }
+
+  .brand-card {
+    min-height: 112px;
+    padding: 12px;
+  }
+
+  .brand-card img {
+    width: min(92px, 100%);
+  }
+
+  .steps li {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .steps li::before {
+    width: 36px;
+    height: 30px;
+    font-size: 0.78rem;
+  }
+
+  .steps li > span,
+  .steps--compact li > span {
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .example-panel,
+  .signature-form,
+  .preview-panel,
+  .contact-panel {
+    padding: 18px;
+  }
+
+  .example-panel::before {
+    margin: -18px -18px 16px;
+  }
+
+  .signature-form::before,
+  .preview-panel::before {
+    margin: -18px -18px 18px;
+  }
+
+  .signature-box {
+    min-height: 150px;
+    padding: 12px;
+  }
+
+  .video-placeholder {
+    min-height: 180px;
   }
 }
