@@ -321,10 +321,17 @@ async function copySignature() {
       copyWithSelection(html);
     }
 
+    hideManualCopy();
     copyStatus.textContent = "Assinatura copiada. Agora é só colar no Gmail.";
   } catch (error) {
-    copyWithSelection(html);
-    copyStatus.textContent = "Assinatura copiada pelo modo compatível.";
+    try {
+      copyWithSelection(html);
+      hideManualCopy();
+      copyStatus.textContent = "Assinatura copiada pelo modo compatível.";
+    } catch (fallbackError) {
+      showManualCopy(html, "Selecione a assinatura abaixo, copie com Ctrl+C e cole no Gmail.");
+      copyStatus.textContent = "O Opera bloqueou a cópia automática. Use a cópia manual abaixo.";
+    }
   }
 }
 
@@ -341,20 +348,25 @@ async function copyTitanSignature() {
 
   try {
     await copyPlainText(html);
+    hideManualCopy();
     copyStatus.textContent = "HTML copiado para Titan/HostGator. Cole no campo de assinatura HTML customizada.";
   } catch (error) {
-    copyStatus.textContent = "Não foi possível copiar automaticamente. Selecione o HTML gerado e copie manualmente.";
+    showManualCopy(html, "Copie este HTML e cole no campo de assinatura HTML customizada do Titan.");
+    copyStatus.textContent = "O Opera bloqueou a cópia automática. Copie o HTML manualmente abaixo.";
   }
 }
 
 function copyWithSelection(html) {
   const temporary = document.createElement("div");
   temporary.setAttribute("contenteditable", "true");
+  temporary.setAttribute("tabindex", "-1");
   temporary.style.position = "fixed";
   temporary.style.left = "-9999px";
   temporary.style.top = "0";
+  temporary.style.opacity = "0";
   temporary.innerHTML = html;
   document.body.appendChild(temporary);
+  temporary.focus();
 
   const range = document.createRange();
   range.selectNodeContents(temporary);
@@ -362,9 +374,13 @@ function copyWithSelection(html) {
   const selection = window.getSelection();
   selection.removeAllRanges();
   selection.addRange(range);
-  document.execCommand("copy");
+  const copied = document.execCommand("copy");
   selection.removeAllRanges();
   temporary.remove();
+
+  if (!copied) {
+    throw new Error("copy command failed");
+  }
 }
 
 async function copyPlainText(text) {
@@ -385,8 +401,38 @@ async function copyPlainText(text) {
   document.body.appendChild(temporary);
   temporary.focus();
   temporary.select();
-  document.execCommand("copy");
+  const copied = document.execCommand("copy");
   temporary.remove();
+
+  if (!copied) {
+    throw new Error("copy command failed");
+  }
+}
+
+function showManualCopy(content, message) {
+  hideManualCopy();
+
+  const panel = document.createElement("div");
+  panel.className = "manual-copy-panel";
+
+  const help = document.createElement("p");
+  help.textContent = message;
+
+  const textarea = document.createElement("textarea");
+  textarea.value = content;
+  textarea.setAttribute("readonly", "readonly");
+  textarea.rows = 8;
+
+  panel.appendChild(help);
+  panel.appendChild(textarea);
+  copyStatus.insertAdjacentElement("afterend", panel);
+
+  textarea.focus();
+  textarea.select();
+}
+
+function hideManualCopy() {
+  document.querySelector(".manual-copy-panel")?.remove();
 }
 
 function setupContacts() {

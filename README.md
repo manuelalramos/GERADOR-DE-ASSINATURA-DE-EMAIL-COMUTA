@@ -106,6 +106,8 @@ O sistema gera automaticamente uma prévia da assinatura com os dados preenchido
 
 Ao clicar em **Copiar assinatura**, o conteúdo é copiado como HTML visual. Dessa forma, o usuário não precisa acessar, editar ou copiar nenhum código.
 
+Para Titan/HostGator, use o botão **Copiar HTML Titan** e cole no campo de assinatura HTML customizada. No Opera, principalmente quando o projeto está aberto localmente como `file://`, a cópia automática pode ser bloqueada pelo navegador. Se isso acontecer, o gerador mostra uma caixa para copiar manualmente.
+
 Depois, basta acessar:
 
 ```text
