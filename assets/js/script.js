@@ -33,6 +33,7 @@ const CONFIG = {
 const form = document.querySelector("#signatureForm");
 const preview = document.querySelector("#signaturePreview");
 const copyButton = document.querySelector("#copySignature");
+const copyTitanButton = document.querySelector("#copyTitanSignature");
 const copyStatus = document.querySelector("#copyStatus");
 const emailInput = document.querySelector("#email");
 const phoneInput = document.querySelector("#phone");
@@ -327,6 +328,25 @@ async function copySignature() {
   }
 }
 
+async function copyTitanSignature() {
+  validatePhone();
+
+  if (!form.reportValidity()) {
+    copyStatus.textContent = "Revise os campos destacados antes de copiar.";
+    return;
+  }
+
+  const data = getFormData();
+  const html = addEmailSpacing(buildSignature(data));
+
+  try {
+    await copyPlainText(html);
+    copyStatus.textContent = "HTML copiado para Titan/HostGator. Cole no campo de assinatura HTML customizada.";
+  } catch (error) {
+    copyStatus.textContent = "Não foi possível copiar automaticamente. Selecione o HTML gerado e copie manualmente.";
+  }
+}
+
 function copyWithSelection(html) {
   const temporary = document.createElement("div");
   temporary.setAttribute("contenteditable", "true");
@@ -344,6 +364,28 @@ function copyWithSelection(html) {
   selection.addRange(range);
   document.execCommand("copy");
   selection.removeAllRanges();
+  temporary.remove();
+}
+
+async function copyPlainText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      // Fallback abaixo para navegadores que bloqueiam clipboard em file://.
+    }
+  }
+
+  const temporary = document.createElement("textarea");
+  temporary.value = text;
+  temporary.style.position = "fixed";
+  temporary.style.left = "-9999px";
+  temporary.style.top = "0";
+  document.body.appendChild(temporary);
+  temporary.focus();
+  temporary.select();
+  document.execCommand("copy");
   temporary.remove();
 }
 
@@ -373,6 +415,7 @@ form.addEventListener("change", (event) => {
 });
 
 copyButton.addEventListener("click", copySignature);
+copyTitanButton.addEventListener("click", copyTitanSignature);
 
 document.querySelectorAll("[data-load-brand]").forEach((button) => {
   button.addEventListener("click", () => {

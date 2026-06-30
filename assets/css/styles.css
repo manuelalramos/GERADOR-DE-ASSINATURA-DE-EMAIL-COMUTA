@@ -278,6 +278,13 @@ h3 {
   margin-bottom: 18px;
 }
 
+.copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .ghost-button,
 .copy-button,
 .contact-button {
@@ -301,10 +308,16 @@ h3 {
 
 .copy-button,
 .contact-button {
-  padding: 0 18px;
+  padding: 0 16px;
   color: #ffffff;
   background: var(--ink);
   box-shadow: 0 10px 22px rgba(24, 33, 42, 0.18);
+}
+
+.copy-button--secondary {
+  color: var(--ink);
+  background: #eef3f6;
+  box-shadow: none;
 }
 
 .contact-button--whatsapp {
@@ -608,6 +621,10 @@ input:focus {
 
   .copy-button,
   .ghost-button {
+    width: 100%;
+  }
+
+  .copy-actions {
     width: 100%;
   }
 

@@ -170,9 +170,14 @@
           <aside class="preview-panel" aria-label="Prévia da assinatura">
             <div class="preview-panel__top">
               <h3>Prévia</h3>
-              <button class="copy-button" id="copySignature" type="button">
-                Copiar assinatura
-              </button>
+              <div class="copy-actions" aria-label="Opções para copiar assinatura">
+                <button class="copy-button" id="copySignature" type="button">
+                  Copiar assinatura
+                </button>
+                <button class="copy-button copy-button--secondary" id="copyTitanSignature" type="button">
+                  Copiar HTML Titan
+                </button>
+              </div>
             </div>
             <div class="signature-box signature-box--live" id="signaturePreview"></div>
             <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
