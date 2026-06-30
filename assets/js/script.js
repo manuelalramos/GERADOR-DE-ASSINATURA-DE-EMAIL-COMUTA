@@ -19,7 +19,7 @@ const CONFIG = {
       website: "institutocomuta.org.br",
       websiteHref: "https://institutocomuta.org.br",
       emailDomain: "institutocomuta.org.br",
-      address: "R. Zike Tuma, 744 - Casa 4 - Jardim Ubirajara, São Paulo - SP, 04458-000"
+      address: "R. Zike Tuma, 744 - Casa 4, Sala 1 - Jardim Ubirajara, São Paulo - SP, 04458-000"
     }
   },
   icons: {
